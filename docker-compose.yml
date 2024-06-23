@@ -1,11 +1,23 @@
-version: '3'
+version: '3.7'
+
 services:
-  db:
-    image: postgres
-    restart: always
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: rickandmorty
+  mongo:
+    image: mongo
     ports:
-      - "5432:5432"
+      - 27017:27017
+    environment:
+      MONGO_INITDB_DATABASE: rickandmorty
+
+  app:
+    image: node:14
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: npm run start:dev
+    ports:
+      - 3000:3000
+    environment:
+      MONGO_URI: mongodb://mongo:27017/rickandmorty
+      JWT_SECRET: your_jwt_secret_key
+    depends_on:
+      - mongo
