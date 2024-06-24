@@ -18,6 +18,6 @@ services:
       - 3000:3000
     environment:
       MONGO_URI: mongodb://mongo:27017/rickandmorty
-      JWT_SECRET: your_jwt_secret_key
+      JWT_SECRET: vitor
     depends_on:
       - mongo

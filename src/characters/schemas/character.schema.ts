@@ -9,8 +9,10 @@ export class Character extends Document {
   @Prop() species: string;
   @Prop() type: string;
   @Prop() gender: string;
-  @Prop() origin: Record<string, any>;
-  @Prop() location: Record<string, any>;
+
+  @Prop({ type: Object }) origin: Record<string, any>;
+  @Prop({ type: Object }) location: Record<string, any>;
+
   @Prop() image: string;
   @Prop() episode: string[];
   @Prop() url: string;

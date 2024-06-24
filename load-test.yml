@@ -1,0 +1,25 @@
+config:
+  target: 'http://localhost:3000'
+  phases:
+    - duration: 60
+      arrivalRate: 10
+scenarios:
+  - flow:
+      - get:
+          url: "/characters"
+      - get:
+          url: "/characters/1"
+      - post:
+          url: "/characters"
+          json:
+            name: "Test Character"
+            status: "Alive"
+            species: "Human"
+            type: ""
+            gender: "Male"
+      - patch:
+          url: "/characters/1"
+          json:
+            name: "Updated Character"
+      - delete:
+          url: "/characters/1"
